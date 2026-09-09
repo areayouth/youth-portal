@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playbooks</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f4f6f9;
+      color: #1e2a4a;
+      line-height: 1.5;
+      padding: 2.5rem 2rem 3rem;
+    }
+
+    .page-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+
+    .page-header .subtitle {
+      color: #5a6478;
+      font-size: 0.95rem;
+    }
+
+    #featured-section {
+      margin-bottom: 2.5rem;
+      padding: 1.25rem;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(196, 165, 116, 0.12) 0%, rgba(30, 42, 74, 0.04) 100%);
+      border: 1px solid rgba(196, 165, 116, 0.35);
+      box-shadow: 0 4px 24px rgba(30, 42, 74, 0.08);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1e2a4a;
+      margin-bottom: 1rem;
+      letter-spacing: 0.01em;
+    }
+
+    .section-label svg {
+      width: 18px;
+      height: 18px;
+      color: #c4a574;
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(196, 165, 116, 0.4);
+      box-shadow: 0 12px 40px rgba(30, 42, 74, 0.14);
+      background: #fff;
+    }
+
+    .featured-left {
+      background: linear-gradient(145deg, #1e2a4a 0%, #2a3d6b 60%, #3d5294 100%);
+      color: #fff;
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-left::after {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 60%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(196, 165, 116, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .featured-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .featured-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: #fff;
+      fill: none;
+    }
+
+    .featured-left h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      line-height: 1.25;
+    }
+
+    .featured-left .featured-desc {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 1.5rem;
+    }
+
+    .featured-chevrons {
+      display: flex;
+      gap: 0.35rem;
+      opacity: 0.35;
+    }
+
+    .featured-chevrons svg {
+      width: 36px;
+      height: 36px;
+      fill: #4a7fd4;
+    }
+
+    .featured-right {
+      padding: 1.75rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 2rem;
+      align-content: center;
+      position: relative;
+    }
+
+    .meta-block label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #8a94a6;
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-block .value {
+      font-size: 0.875rem;
+      color: #1e2a4a;
+    }
+
+    .meta-block .value.email {
+      color: #5a6478;
+      font-size: 0.8rem;
+    }
+
+    .meta-block .value.time {
+      font-weight: 600;
+    }
+
+    .view-playbook-btn {
+      position: absolute;
+      right: 2rem;
+      bottom: 1.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.35rem;
+      background: linear-gradient(135deg, #1e2a4a 0%, #2a3d6b 100%);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(30, 42, 74, 0.25);
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    }
+
+    .view-playbook-btn:hover {
+      background: linear-gradient(135deg, #2a3d6b 0%, #3d5294 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(30, 42, 74, 0.3);
+    }
+
+    .view-playbook-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .all-playbooks-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #e4e8ef;
+    }
+
+    .all-playbooks-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .carousel-controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .carousel-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #dde2ea;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #1e2a4a;
+      transition: background 0.15s, opacity 0.15s;
+    }
+
+    .carousel-btn:hover:not(:disabled) {
+      background: #f0f2f6;
+    }
+
+    .carousel-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    .carousel-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .playbooks-row-wrap {
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .playbooks-row {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 0.25rem;
+    }
+
+    .playbooks-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .playbook-card {
+      flex: 0 0 240px;
+      background: #fff;
+      border: 1px solid #e4e8ef;
+      border-radius: 14px;
+      padding: 1.1rem;
+      text-decoration: none;
+      color: inherit;
+      display: grid;
+      grid-template-rows: 44px 2.6rem 3.6rem 2.75rem 2.75rem auto;
+      gap: 0.5rem;
+      box-shadow: 0 1px 6px rgba(30, 42, 74, 0.06);
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+
+    .playbook-card:hover {
+      box-shadow: 0 4px 16px rgba(30, 42, 74, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-icon.navy { background: #1e2a4a; }
+    .card-icon.gold { background: #c4a574; }
+
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #fff;
+      fill: none;
+    }
+
+    .playbook-card h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      align-self: start;
+    }
+
+    .playbook-card .card-desc {
+      font-size: 0.78rem;
+      color: #5a6478;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      align-self: start;
+    }
+
+    .card-meta-item {
+      align-self: start;
+    }
+
+    .card-meta-item label {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #8a94a6;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-meta-item .card-meta-value {
+      font-size: 0.75rem;
+      color: #1e2a4a;
+      line-height: 1.35;
+    }
+
+    .type-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .type-badge.outreach {
+      color: #1d4ed8;
+      background: #eff6ff;
+    }
+
+    .type-badge.relationship-building {
+      color: #6d28d9;
+      background: #f5f3ff;
+    }
+
+    .type-badge.discipleship {
+      color: #b45309;
+      background: #fffbeb;
+    }
+
+    .playbook-card .card-time {
+      margin-top: 0.35rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid #f0f2f6;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #c4a574;
+      align-self: end;
+    }
+
+    .playbook-card .card-time.navy { color: #1e2a4a; }
+
+    .footer-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      color: #8a94a6;
+    }
+
+    .footer-note svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1.5rem 1rem 2rem; }
+
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-right {
+        grid-template-columns: 1fr;
+        padding-bottom: 4.5rem;
+      }
+
+      .view-playbook-btn {
+        right: 1.75rem;
+        bottom: 1.25rem;
+      }
+
+      .playbook-card {
+        flex: 0 0 210px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <div>
+      <h1>Playbooks</h1>
+      <p class="subtitle">Proven models you can use to reach and disciple students.</p>
+    </div>
+  </header>
+
+  <section id="featured-section" aria-label="Featured Playbook">
+    <div class="section-label">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Featured Playbook
+    </div>
+    <div id="featured-card"></div>
+  </section>
+
+  <section aria-label="All Playbooks">
+    <div class="all-playbooks-header">
+      <h2>All Playbooks</h2>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="scroll-left" aria-label="Scroll left">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="carousel-btn" id="scroll-right" aria-label="Scroll right">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="playbooks-row-wrap">
+      <div class="playbooks-row" id="playbooks-row"></div>
+    </div>
+  </section>
+
+  <p class="footer-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+    </svg>
+    New playbooks coming soon. Check back often!
+  </p>
+
+  <script>
+    // ============================================================
+    // PLAYBOOK CONFIG — edit here to add playbooks or change featured
+    // ============================================================
+
+    // Type enum — use these keys in each playbook's `types` array
+    const PLAYBOOK_TYPES = {
+      OUTREACH: { label: "Outreach", cssClass: "outreach" },
+      RELATIONSHIP_BUILDING: { label: "Relationship Building", cssClass: "relationship-building" },
+      DISCIPLESHIP: { label: "Discipleship", cssClass: "discipleship" },
+    };
+
+    const PLAYBOOK_CONFIG = {
+      // Set to any playbook's `id` to feature it
+      featuredPlaybookId: "aym-mentorship",
+
+      playbooks: [
+        {
+          id: "sports-youth-group",
+          name: "Sports + Youth Group",
+          owner: "Joanna Kang",
+          ownerEmail: "joanna.kang@acts2.network",
+          types: ["RELATIONSHIP_BUILDING", "DISCIPLESHIP"],
+          description: "Stacking sports with spiritual content",
+          pitch: "Stacking sports with spiritual content",
+          timeCommitment: "8 weeks ~ 2 months",
+          link: "https://drive.google.com/drive/u/1/folders/1xj0U8wcNgHU_9iL4VZQj4DaF3M7G3o64",
+          icon: "basketball",
+          theme: "navy",
+        },
+        {
+          id: "aym-mentorship",
+          name: "AYM Mentorship Program (AMP)",
+          owner: "Jacqui Wang",
+          ownerEmail: "jacqui.wang@acts2.network",
+          types: ["OUTREACH"],
+          description: "Stacking sports with Interest-based mentorship",
+          pitch: "Interest-based mentorship through sports",
+          timeCommitment: "3 Weeks",
+          link: "https://drive.google.com/drive/u/1/folders/18AzAf5ECCNdxrJ_q2t6tQ7YzoTIjdWEI",
+          icon: "people",
+          theme: "navy",
+        },
+        {
+          id: "quest-groups",
+          name: "Quest Groups",
+          owner: "Chris Le",
+          ownerEmail: "chris.le@acts2.network",
+          types: ["RELATIONSHIP_BUILDING", "DISCIPLESHIP"],
+          description: "Condensed C101 focused on Christian Life",
+          pitch: "Condensed C101 Christian Life focus",
+          timeCommitment: "5 Weeks",
+          link: "https://drive.google.com/drive/u/1/folders/1jJigfYdt8Acr_XFCF0gfkKJMjBncHuw5",
+          icon: "people",
+          theme: "navy",
+        },
+        {
+          id: "interhigh-2",
+          name: "Interhigh 2.0",
+          owner: "Ilju Wang",
+          ownerEmail: "ilju.wang@acts2.network",
+          types: ["DISCIPLESHIP"],
+          description: "New Interhigh model to raise student leaders",
+          pitch: "Raise student leaders through Interhigh",
+          timeCommitment: "1 month ~ 6 months",
+          link: "https://drive.google.com/drive/u/1/folders/1N86QoXYD6JGrdMutyCkCBCE_POHkrcKd",
+          icon: "church",
+          theme: "gold",
+        },
+        {
+          id: "noblemen-hs",
+          name: "Noblemen for HS",
+          owner: "Ander Chen",
+          ownerEmail: "ander.chen@acts2.network",
+          types: ["OUTREACH", "RELATIONSHIP_BUILDING", "DISCIPLESHIP"],
+          description: "Adapted Noblemen for HS boys",
+          pitch: "Noblemen adapted for high school boys",
+          timeCommitment: "3 months",
+          link: "https://drive.google.com/drive/u/1/folders/1yEcYU7Lx_qnShRS4qbTVnuY-1yX5qLqV",
+          icon: "shield",
+          theme: "navy",
+        },
+        {
+          id: "discipleship-group",
+          name: "Discipleship Group",
+          owner: "Alex Choi",
+          ownerEmail: "alex.choi@acts2.network",
+          types: ["DISCIPLESHIP"],
+          description: "Weekly discipleship with overnight trip closer",
+          pitch: "Weekly discipleship plus overnight trip",
+          timeCommitment: "3 weeks",
+          link: "https://drive.google.com/drive/u/1/folders/10Idjp-eTwGP3UgxPCgWTUA020-2ybrUl",
+          icon: "cross",
+          theme: "gold",
+        },
+      ],
+    };
+    // ============================================================
+
+    const ICON_SVGS = {
+      basketball: '<circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/>',
+      people: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+      church: '<path d="M12 2v4"/><path d="M10 6h4"/><path d="M12 6V3"/><path d="M7 21V10l5-4 5 4v11"/><path d="M7 21h10"/><path d="M10 21v-5h4v5"/>',
+      shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+      cross: '<path d="M12 2v20M5 9h14"/>',
+    };
+
+    function iconSvg(name) {
+      const paths = ICON_SVGS[name] || ICON_SVGS.people;
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
+    }
+
+    function renderTypeBadges(typeKeys) {
+      return typeKeys
+        .map((key) => {
+          const typeInfo = PLAYBOOK_TYPES[key];
+          if (!typeInfo) return "";
+          return `<span class="type-badge ${typeInfo.cssClass}">${typeInfo.label}</span>`;
+        })
+        .join("");
+    }
+
+    function getPlaybookById(id) {
+      return PLAYBOOK_CONFIG.playbooks.find((playbook) => playbook.id === id);
+    }
+
+    function renderFeatured(playbook) {
+      const container = document.getElementById("featured-card");
+      if (!playbook) {
+        container.innerHTML = "";
+        return;
+      }
+
+      container.innerHTML = `
+        <article class="featured-card">
+          <div class="featured-left">
+            <div class="featured-icon">${iconSvg(playbook.icon)}</div>
+            <h2>${playbook.name}</h2>
+            <p class="featured-desc">${playbook.description}</p>
+            <div class="featured-chevrons">
+              <svg viewBox="0 0 24 24"><path d="M8 4l8 8-8 8V4z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M8 4l8 8-8 8V4z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M8 4l8 8-8 8V4z"/></svg>
+            </div>
+          </div>
+          <div class="featured-right">
+            <div class="meta-block">
+              <label>Owner</label>
+              <div class="value">${playbook.owner}</div>
+              <div class="value email">${playbook.ownerEmail}</div>
+            </div>
+            <div class="meta-block">
+              <label>Type</label>
+              <div class="value type-badges">${renderTypeBadges(playbook.types)}</div>
+            </div>
+            <div class="meta-block">
+              <label>5 Word Pitch</label>
+              <div class="value">${playbook.pitch}</div>
+            </div>
+            <div class="meta-block">
+              <label>Time Commitment</label>
+              <div class="value time">${playbook.timeCommitment}</div>
+            </div>
+            <a class="view-playbook-btn" href="${playbook.link}" target="_blank" rel="noopener noreferrer">
+              View Playbook
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderPlaybookCard(playbook) {
+      const timeClass = playbook.theme === "navy" ? "navy" : "";
+      const card = document.createElement("a");
+      card.className = "playbook-card";
+      card.href = playbook.link;
+      card.target = "_blank";
+      card.rel = "noopener noreferrer";
+      card.innerHTML = `
+        <div class="card-icon ${playbook.theme}">${iconSvg(playbook.icon)}</div>
+        <h3>${playbook.name}</h3>
+        <p class="card-desc">${playbook.description}</p>
+        <div class="card-meta-item">
+          <label>Owner</label>
+          <div class="card-meta-value">${playbook.owner}</div>
+        </div>
+        <div class="card-meta-item">
+          <label>Type</label>
+          <div class="type-badges">${renderTypeBadges(playbook.types)}</div>
+        </div>
+        <div class="card-time ${timeClass}">${playbook.timeCommitment}</div>
+      `;
+      return card;
+    }
+
+    function renderAllPlaybooks() {
+      const row = document.getElementById("playbooks-row");
+      row.innerHTML = "";
+
+      PLAYBOOK_CONFIG.playbooks.forEach((playbook) => {
+        row.appendChild(renderPlaybookCard(playbook));
+      });
+    }
+
+    function updateCarouselButtons() {
+      const row = document.getElementById("playbooks-row");
+      const leftBtn = document.getElementById("scroll-left");
+      const rightBtn = document.getElementById("scroll-right");
+
+      leftBtn.disabled = row.scrollLeft <= 0;
+      rightBtn.disabled = row.scrollLeft + row.clientWidth >= row.scrollWidth - 1;
+    }
+
+    function initCarousel() {
+      const row = document.getElementById("playbooks-row");
+      const leftBtn = document.getElementById("scroll-left");
+      const rightBtn = document.getElementById("scroll-right");
+      const scrollAmount = 260;
+
+      leftBtn.addEventListener("click", () => {
+        row.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      });
+
+      rightBtn.addEventListener("click", () => {
+        row.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      });
+
+      row.addEventListener("scroll", updateCarouselButtons);
+      window.addEventListener("resize", updateCarouselButtons);
+    }
+
+    function init() {
+      const featured = getPlaybookById(PLAYBOOK_CONFIG.featuredPlaybookId);
+      renderFeatured(featured);
+      renderAllPlaybooks();
+      initCarousel();
+      updateCarouselButtons();
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
