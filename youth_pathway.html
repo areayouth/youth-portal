@@ -1,0 +1,272 @@
+<style>
+  .pathway-panel,
+  .pathway-panel * {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0b1b4f;
+    box-sizing: border-box;
+  }
+
+  /* =========================
+     YOUTH PATHWAY
+     ========================= */
+
+  .pathway-panel {
+    background: linear-gradient(135deg, #edf8ff 0%, #ddecff 100%);
+    border-radius: 18px;
+    padding: 30px 28px 34px;
+  }
+
+  .eyebrow {
+    color: #1665d8;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    margin-bottom: 7px;
+  }
+
+  .pathway-title {
+    font-size: 34px;
+    margin: 0 0 8px;
+    font-weight: 800;
+  }
+
+  .pathway-copy {
+    max-width: 900px;
+    color: #40527c;
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 26px;
+  }
+
+  .pathway-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .path-card {
+    min-height: 190px;
+    border-radius: 12px;
+    padding: 18px 14px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .path-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+
+  .path-name {
+    font-size: 19px;
+    line-height: 1.12;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .path-desc {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .path-1 {
+    background: #f8c7c8;
+  }
+
+  .path-2 {
+    background: #ff575f;
+    color: #fff;
+  }
+
+  .path-3 {
+    background: #98a9df;
+    color: #fff;
+  }
+
+  .path-4 {
+    background: #173e86;
+    color: #fff;
+  }
+
+  .path-5 {
+    background: #f6c2c3;
+  }
+
+  .path-6 {
+    background: #ff575f;
+    color: #fff;
+  }
+
+  @media (max-width: 900px) {
+
+    .pathway-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+  }
+
+  @media (max-width: 580px) {
+
+    .pathway-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pathway-title {
+      font-size: 28px;
+    }
+
+  }
+</style>
+
+
+<section class="pathway-panel">
+
+  <div class="eyebrow">
+    OUR YOUTH PATHWAY
+  </div>
+
+  <h2 class="pathway-title">
+    One Pathway for Every Student
+  </h2>
+
+  <div class="pathway-copy">
+    See how our playbooks, events, discipleship resources,
+    mission opportunities, and college ministry work together
+    to move students from first connection to lifelong Kingdom impact.
+  </div>
+
+
+  <div class="pathway-grid">
+
+
+    <!-- WIDE NET -->
+
+    <div class="path-card path-1">
+
+      <div class="path-icon">
+        👥
+      </div>
+
+      <div class="path-name">
+        Wide Net +<br>
+        Playbooks
+      </div>
+
+      <div class="path-desc">
+        Outreach +<br>
+        Regular Touchpoints
+      </div>
+
+    </div>
+
+
+
+    <!-- IGNITION -->
+
+    <div class="path-card path-2">
+
+      <div class="path-icon">
+        🔥
+      </div>
+
+      <div class="path-name">
+        Ignition
+      </div>
+
+      <div class="path-desc">
+        High-Impact Event<br>
+        Call to Action
+      </div>
+
+    </div>
+
+
+
+    <!-- DISCIPLESHIP -->
+
+    <div class="path-card path-3">
+
+      <div class="path-icon">
+        👥
+      </div>
+
+      <div class="path-name">
+        Discipleship
+      </div>
+
+      <div class="path-desc">
+        Clear Next Step
+      </div>
+
+    </div>
+
+
+
+    <!-- MISSION / MINISTRY -->
+
+    <div class="path-card path-4">
+
+      <div class="path-icon">
+        ⛰️
+      </div>
+
+      <div class="path-name">
+        Mission,<br>
+        Ministry
+      </div>
+
+      <div class="path-desc">
+        Activate Students
+      </div>
+
+    </div>
+
+
+
+    <!-- AYM COLLEGE -->
+
+    <div class="path-card path-5">
+
+      <div class="path-icon">
+        🎓
+      </div>
+
+      <div class="path-name">
+        AYM<br>
+        College
+      </div>
+
+      <div class="path-desc">
+        Serve as an AYM Alumni
+      </div>
+
+    </div>
+
+
+
+    <!-- LIFELONG KINGDOM WORKER -->
+
+    <div class="path-card path-6">
+
+      <div class="path-icon">
+        🌱
+      </div>
+
+      <div class="path-name">
+        Lifelong Kingdom<br>
+        Worker
+      </div>
+
+      <div class="path-desc">
+        Acts2Next, Team
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>

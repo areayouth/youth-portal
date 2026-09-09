@@ -1,0 +1,664 @@
+<style>
+  .resource-section {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0b1b4f;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 10px 18px 60px;
+    box-sizing: border-box;
+  }
+
+  .resource-section * {
+    box-sizing: border-box;
+  }
+
+  .resource-section a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* =========================
+     FEATURED + NEWS
+     ========================= */
+
+  .top-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr;
+    gap: 22px;
+    margin-bottom: 48px;
+    align-items: start;
+  }
+
+  .featured-card {
+    background: linear-gradient(135deg, #eef8ff 0%, #dcebff 100%);
+    border-radius: 18px;
+    min-height: 245px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-label {
+    display: inline-block;
+    background: #1877f2;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    padding: 8px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+
+  .featured-date {
+    font-size: 16px;
+    color: #40527c;
+    margin-bottom: 6px;
+  }
+
+  .featured-title {
+    font-size: 34px;
+    line-height: 1.08;
+    margin: 0 0 14px;
+    font-weight: 800;
+    max-width: 75%;
+  }
+
+  .featured-copy {
+    max-width: 650px;
+    padding-right: 90px;
+    font-size: 17px;
+    line-height: 1.5;
+    color: #40527c;
+    margin-bottom: 22px;
+  }
+
+  .primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: #123a88;
+    color: #fff !important;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: .18s ease;
+  }
+
+  .primary-button:hover {
+    background: #0d2f70;
+    transform: translateY(-1px);
+  }
+
+  .featured-icon {
+    position: absolute;
+    right: 30px;
+    top: 58px;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+  }
+
+  /* Youth in the News — intentionally compact */
+
+  .news-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .news-card {
+    border: 1px solid #d9e2f0;
+    border-radius: 14px;
+    background: #fff;
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 0;
+    height: auto;
+    transition: .18s ease;
+  }
+
+  .news-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(13, 37, 82, .08);
+  }
+
+  .news-icon {
+    flex: 0 0 54px;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #eaf4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+
+  .news-content {
+    flex: 1;
+  }
+
+  .news-title {
+    font-size: 24px;
+    margin: 0 0 5px;
+    font-weight: 800;
+  }
+
+  .news-copy {
+    color: #40527c;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .news-arrow {
+    margin-left: auto;
+    font-size: 26px;
+    line-height: 1;
+  }
+
+
+  /* =========================
+     YOUTH PATHWAY BANNER
+     ========================= */
+
+  .pathway-banner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #d9e2f0;
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin-bottom: 48px;
+    transition: .18s ease;
+  }
+
+  .pathway-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(13, 37, 82, .08);
+  }
+
+  .pathway-banner-icon {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #f1edff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .pathway-banner-content {
+    flex: 1;
+  }
+
+  .pathway-banner-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .pathway-banner-copy {
+    font-size: 15px;
+    color: #40527c;
+  }
+
+  .pathway-banner-arrow {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1665d8;
+  }
+
+
+  /* =========================
+     EXPLORE RESOURCES
+     ========================= */
+
+  .explore-section {
+    margin-bottom: 90px;
+  }
+
+  .section-title {
+    font-size: 34px;
+    margin: 0 0 6px;
+    font-weight: 800;
+  }
+
+  .section-subtitle {
+    margin: 0 0 22px;
+    color: #40527c;
+    font-size: 17px;
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .resource-card {
+    border: 1px solid #d9e2f0;
+    border-radius: 14px;
+    background: #fff;
+    padding: 20px;
+    min-height: 130px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: .18s ease;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(13, 37, 82, .08);
+  }
+
+  .resource-icon {
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .icon-blue {
+    background: #edf6ff;
+  }
+
+  .icon-green {
+    background: #ecf9f3;
+  }
+
+  .icon-purple {
+    background: #f1edff;
+  }
+
+  .icon-yellow {
+    background: #fff5df;
+  }
+
+  .resource-card-content {
+    flex: 1;
+  }
+
+  .resource-name {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 5px;
+  }
+
+  .resource-desc {
+    font-size: 14px;
+    color: #5a6785;
+    line-height: 1.4;
+  }
+
+  .resource-chevron {
+    margin-left: auto;
+    font-size: 24px;
+  }
+
+
+  /* =========================
+     RESPONSIVE
+     ========================= */
+
+  @media (max-width: 900px) {
+
+    .top-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .resource-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+  }
+
+  @media (max-width: 580px) {
+
+    .resource-section {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .resource-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-title,
+    .section-title {
+      font-size: 28px;
+    }
+
+    .featured-title {
+      max-width: 100%;
+    }
+
+    .featured-copy {
+      padding-right: 0;
+    }
+
+    .featured-icon {
+      display: none;
+    }
+
+  }
+</style>
+
+
+<div class="resource-section">
+
+
+  <!-- ========================================
+       FEATURED + YOUTH IN THE NEWS
+       ======================================== -->
+
+  <div class="top-grid">
+
+
+    <!-- FEATURED DOMAIN TIME -->
+
+    <div class="featured-card">
+
+      <span class="featured-label">
+        FEATURED
+      </span>
+
+      <div class="featured-date">
+        09/05/2026
+      </div>
+
+      <h2 class="featured-title">
+        Domain Time Resources
+      </h2>
+
+      <div class="featured-copy">
+        Access the slides, links, tools, and resources shared during latest Domain Time.
+      </div>
+
+      <a
+        class="primary-button"
+        href="https://sites.google.com/gpmail.org/youth/categories/09052026-domain-time-assets?pli=1&authuser=1"
+        target="_blank"
+      >
+        View Assets →
+      </a>
+
+      <div class="featured-icon">
+        📄
+      </div>
+
+    </div>
+
+
+    <!-- YOUTH IN THE NEWS + IGNITION -->
+
+    <div class="news-stack">
+
+      <a
+        class="news-card"
+        href="https://sites.google.com/gpmail.org/youth/newsletter/issue-02-092026?authuser=1"
+        target="_blank"
+      >
+
+        <div class="news-icon">
+          📣
+        </div>
+
+        <div class="news-content">
+
+          <div class="news-title">
+            Youth in the News
+          </div>
+
+          <div class="news-copy">
+            Click here for the latest newsletter.
+          </div>
+
+        </div>
+
+        <div class="news-arrow">
+          ›
+        </div>
+
+      </a>
+
+
+      <!-- IGNITION WEBSITE -->
+
+      <a
+        class="news-card"
+        href="https://www.ignitionstudents.org/"
+        target="_blank"
+      >
+
+        <div class="news-icon">
+          🔥
+        </div>
+
+        <div class="news-content">
+
+          <div class="news-title">
+            Ignition Website
+          </div>
+
+          <div class="news-copy">
+            Check out our Ignition Students website.
+          </div>
+
+        </div>
+
+        <div class="news-arrow">
+          ›
+        </div>
+
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================
+       YOUTH PATHWAY BANNER
+       ======================================== -->
+
+  <a class="pathway-banner" href="https://sites.google.com/gpmail.org/youth/categories/youth-pathway?authuser=1">
+
+    <div class="pathway-banner-icon">
+      🧭
+    </div>
+
+    <div class="pathway-banner-content">
+      <div class="pathway-banner-title">
+        See the Full Youth Pathway
+      </div>
+      <div class="pathway-banner-copy">
+        The high-level roadmap behind everything we do — from first connection to lifelong Kingdom impact.
+      </div>
+    </div>
+
+    <div class="pathway-banner-arrow">
+      →
+    </div>
+
+  </a>
+
+
+
+  <!-- ========================================
+       EXPLORE RESOURCES
+       ======================================== -->
+
+  <section class="explore-section">
+
+    <h2 class="section-title">
+      Explore Resources
+    </h2>
+
+    <p class="section-subtitle">
+      Browse by category to find what you need.
+    </p>
+
+
+    <div class="resource-grid">
+
+
+      <!-- PLAYBOOKS -->
+
+      <a
+        class="resource-card"
+        href="https://sites.google.com/gpmail.org/youth/playbooks?authuser=1"
+        target="_blank"
+      >
+
+        <div class="resource-icon icon-blue">
+          📖
+        </div>
+
+        <div class="resource-card-content">
+
+          <div class="resource-name">
+            Playbooks
+          </div>
+
+          <div class="resource-desc">
+            Step-by-step guides for your ministry
+          </div>
+
+        </div>
+
+        <div class="resource-chevron">
+          ›
+        </div>
+
+      </a>
+
+
+
+      <!-- DOMAIN TIMES
+           Add your Domain Times URL below when ready. -->
+
+      <a
+        class="resource-card"
+        href="#"
+      >
+
+        <div class="resource-icon icon-green">
+          📄
+        </div>
+
+        <div class="resource-card-content">
+
+          <div class="resource-name">
+            Domain Times
+          </div>
+
+          <div class="resource-desc">
+            Monthly content and teaching tools
+          </div>
+
+        </div>
+
+        <div class="resource-chevron">
+          ›
+        </div>
+
+      </a>
+
+
+
+      <!-- ONBOARDING -->
+
+      <a
+        class="resource-card"
+        href="https://sites.google.com/gpmail.org/youth/onboarding?authuser=1"
+        target="_blank"
+      >
+
+        <div class="resource-icon icon-purple">
+          👥
+        </div>
+
+        <div class="resource-card-content">
+
+          <div class="resource-name">
+            Onboarding
+          </div>
+
+          <div class="resource-desc">
+            Get started and find what you need
+          </div>
+
+        </div>
+
+        <div class="resource-chevron">
+          ›
+        </div>
+
+      </a>
+
+
+
+      <!-- QUICK LINKS -->
+
+      <a
+        class="resource-card"
+        href="https://sites.google.com/gpmail.org/youth/categories?authuser=1"
+        target="_blank"
+      >
+
+        <div class="resource-icon icon-yellow">
+          🔗
+        </div>
+
+        <div class="resource-card-content">
+
+          <div class="resource-name">
+            Quick Links
+          </div>
+
+          <div class="resource-desc">
+            Key tools and frequently used links
+          </div>
+
+        </div>
+
+        <div class="resource-chevron">
+          ›
+        </div>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================
+       OUR YOUTH PATHWAY
+       ======================================== -->
+
+  <!-- See youth_pathway.html -->
+
+
+</div>
