@@ -224,6 +224,141 @@
 
 
   /* =========================
+     FEATURED PROGRAMS
+     ========================= */
+
+  .program-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .program-top .featured-label {
+    margin-bottom: 0;
+  }
+
+  .program-updated {
+    font-size: 13px;
+    font-weight: 700;
+    color: #40527c;
+    background: rgba(255, 255, 255, .7);
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  .program-headline {
+    font-size: 26px;
+    line-height: 1.15;
+    font-weight: 800;
+    margin: 0 0 18px;
+  }
+
+  .program-columns {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 14px;
+  }
+
+  .program-panel {
+    background: rgba(255, 255, 255, .72);
+    border-radius: 14px;
+    padding: 16px 18px 12px;
+  }
+
+  .program-panel-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .program-panel-icon {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #fff5df;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+  }
+
+  .program-panel-head a:hover {
+    text-decoration: underline;
+  }
+
+  .program-rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .program-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid rgba(24, 58, 136, .1);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .program-row > a:first-child::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #1877f2;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .program-row > a:first-child:hover {
+    color: #1877f2;
+  }
+
+  .program-tag {
+    flex: 0 0 auto;
+    background: #123a88;
+    color: #fff !important;
+    border-radius: 999px;
+    padding: 4px 11px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: .18s ease;
+  }
+
+  .program-tag:hover {
+    background: #1877f2;
+    transform: translateY(-1px);
+  }
+
+  .program-more {
+    display: inline-flex;
+    margin-top: 18px;
+    background: #123a88;
+    color: #fff !important;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: .18s ease;
+  }
+
+  .program-more:hover {
+    background: #0d2f70;
+    transform: translateY(-1px);
+  }
+
+
+  /* =========================
      EXPLORE RESOURCES
      ========================= */
 
@@ -324,7 +459,8 @@
 
   @media (max-width: 900px) {
 
-    .top-grid {
+    .top-grid,
+    .program-columns {
       grid-template-columns: 1fr;
     }
 
@@ -376,37 +512,66 @@
   <div class="top-grid">
 
 
-    <!-- FEATURED DOMAIN TIME -->
+    <!-- FEATURED PROGRAMS -->
 
     <div class="featured-card">
 
-      <span class="featured-label">
-        FEATURED
-      </span>
-
-      <div class="featured-date">
-        09/05/2026
+      <div class="program-top">
+        <span class="featured-label">
+          FEATURED
+        </span>
+        <span class="program-updated">
+          🗓 Updated Oct 2, 2026
+        </span>
       </div>
 
-      <h2 class="featured-title">
-        Domain Time Resources
+      <h2 class="program-headline">
+        Two new playbooks to try in your ministry
       </h2>
 
-      <div class="featured-copy">
-        Access the slides, links, tools, and resources shared during latest Domain Time.
+      <div class="program-columns">
+
+        <div class="program-panel">
+          <div class="program-panel-head">
+            <span class="program-panel-icon">⛪</span>
+            <a href="https://drive.google.com/drive/u/1/folders/1yYCl8KPErWffBDHvOOe5try7yr04rQ3N" target="_blank">Interhigh 2.0</a>
+          </div>
+          <ul class="program-rows">
+            <li class="program-row">
+              <a href="https://docs.google.com/presentation/d/1gSWKVp3dp-7wV3crIhf1gW2dEUORU-9b/edit?rtpof=true&amp;sd=true&amp;pli=1" target="_blank">Slide Deck</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="program-panel">
+          <div class="program-panel-head">
+            <span class="program-panel-icon">🏋️</span>
+            <a href="https://drive.google.com/drive/u/1/folders/15EKklZCLYOJc0sRxsmfn2Q584VoVUvBV" target="_blank">Student Leadership</a>
+          </div>
+          <ul class="program-rows">
+            <li class="program-row">
+              <a href="https://drive.google.com/drive/u/1/folders/1w33cD7YZdta9BhbDliswc8Tdz6eOlk8L" target="_blank">AYM Discipleship</a>
+            </li>
+            <li class="program-row">
+              <a href="https://drive.google.com/drive/u/1/folders/10rehbCTFdO_9xmwDs9k2acd6lc9U-eIN" target="_blank">AYM Crew</a>
+              <a class="program-tag" href="https://drive.google.com/file/d/1r2U6APA4ItM_iJmEyW5AkOh4JB3Tp_SN/view?pli=1" target="_blank">📊 Slide Deck</a>
+            </li>
+            <li class="program-row">
+              <a href="https://drive.google.com/drive/u/1/folders/1rJIwqSeDR9CxQRDhjhRJjwV3uMFmcBOn" target="_blank">AYM Council</a>
+              <a class="program-tag" href="https://docs.google.com/presentation/d/1MJqM3IqL5yyJR9HS6_MrSrvqHiAyR-4Q/edit?pli=1" target="_blank">📊 Slide Deck</a>
+            </li>
+          </ul>
+        </div>
+
       </div>
 
       <a
-        class="primary-button"
-        href="https://sites.google.com/gpmail.org/youth/categories/09052026-domain-time-assets?pli=1&authuser=1"
+        class="program-more"
+        href="https://sites.google.com/gpmail.org/youth/playbooks?authuser=1"
         target="_blank"
       >
-        View Assets →
+        Click here for more playbooks →
       </a>
-
-      <div class="featured-icon">
-        📄
-      </div>
 
     </div>
 
